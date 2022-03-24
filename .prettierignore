@@ -1,7 +1,6 @@
 # Ignore artifacts:
 dist
 *.html
-# Ignore artifacts:
 node_modules
 dist
 src/lib

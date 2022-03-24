@@ -1,10 +1,23 @@
 <template>
   <div>
-    5555
-    <router-view></router-view>
+    <screen-adapter>
+     <router-view> </router-view>
+    </screen-adapter>
   </div>
 </template>
+<script>
+import ScreenAdapter from './components/screenAdapter.vue'
+export default {
+  name: 'App',
+  components: {
+    ScreenAdapter
 
+  },
+  data () {
+    return {}
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -18,7 +31,7 @@
   padding: 30px;
 
   a {
-    font-weight: bold;
+     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
