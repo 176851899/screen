@@ -1,8 +1,8 @@
 <template>
- <div>5555
-<router-view></router-view>
- </div>
-
+  <div>
+    5555
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss">
