@@ -19,6 +19,14 @@ export default {
 }
 </script>
 <style lang="scss">
+*{
+  padding: 0;
+  margin: 0;
+}
+i{
+  font-weight: normal;
+  font-style: normal;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,5 +46,8 @@ export default {
       color: #42b983;
     }
   }
+}
+ul,li{
+  list-style: none;
 }
 </style>

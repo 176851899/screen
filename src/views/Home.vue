@@ -1,237 +1,142 @@
 <template>
-<div>
-<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
-  <div id="main" style="width: 1900px;height:460px;" ref="ma"></div>
-</div>
+  <div class="container" v-if="obj">
+    <head-item></head-item>
+    <nav>
+      <list-item
+        v-for="(item, index) in obj"
+        :key="index"
+        :title="item.title"
+        :url="item.url"
+        :desc="item.desc"
+        :des="item.des"
+      ></list-item>
+    </nav>
+    <main>
+      <chart-item width="420px" style="margin-right: 15px">
+        <template #item>
+          <div id="main" style="width: 420px; height: 440px" ref="ma"></div>
+        </template>
+      </chart-item>
+      <chart-item
+        title="各险种缴费明细"
+        width="960px"
+        style="margin-right: 15px"
+        :show="false"
+      >
+      <template #nav>
+        <ul>
+  <li>5252</li>
+  <li>852</li>
+  <li>52</li>
+  <li>52</li>
+  <li>552</li>
+        </ul>
+      </template>
 
+      </chart-item>
+      <chart-item width="420px" title="各险种缴费补缴/退缴情况" :show="false"></chart-item>
+      <chart-item width="600px" title="缴费趋势分析" option="全部"></chart-item>
+       <chart-item width="600px" title="征缴趋势分析" :show="false" style="margin-left:11px;margin-right:11px;" ></chart-item>
+        <chart-item width="600px" title="补缴/退缴趋势分析" option="全部"></chart-item>
+    </main>
+  </div>
 </template>
 <script>
-import echarts from 'echarts'
+import { item } from '../utils/echars'
+import HeadItem from '../components/HeadItem.vue'
+import ListItem from '../components/ListItem.vue'
+import ChartItem from '../components/ChartItem.vue'
 export default {
   name: 'home',
   data () {
     return {
-
-    }
-  },
-  mounted () {
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(this.$refs.ma)
-    const chartData = [
-      {
-        value: 520,
-        name: 'A'
-      },
-      {
-        value: 280,
-        name: 'B'
-      },
-      {
-        value: 100,
-        name: 'C'
-      },
-      {
-        value: 100,
-        name: 'D'
-      }
-    ]
-    const colorList = [
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+      obj: [
         {
-          offset: 0,
-          color: '#CA8CCA'
+          url: 'img/01_70.7cab7527.png',
+          title: '个人缴费金额',
+          desc: '34.56',
+          des: '+2.5%'
         },
         {
-          offset: 1,
-          color: '#EFA5BB'
-        }
-      ]),
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: '#BFA4E4'
+          url: 'img/01_75.df301d87.png',
+          title: '单位缴费金额',
+          desc: '86.56',
+          des: '-0.2%'
         },
         {
-          offset: 1,
-          color: '#E29CE2'
-        }
-      ]),
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: '#A8AAE5'
+          url: 'img/01_7.3990e9c4.png',
+          title: '征缴总金额',
+          desc: '234.5',
+          des: '+2.5%'
         },
         {
-          offset: 1,
-          color: '#BEA3E3'
-        }
-      ]),
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: '#A4D37D'
+          url: 'img/01_75.df301d87.png',
+          title: '缴费总人数',
+          desc: '34.56',
+          des: '+2.5%'
         },
         {
-          offset: 1,
-          color: '#E5F2A7'
-        }
-      ])
-    ]
-    const sum = chartData.reduce((per, cur) => per + cur.value, 0)
-    const gap = (1 * sum) / 100
-    const pieData1 = []
-    const pieData2 = []
-    const gapData = {
-      name: '',
-      value: gap,
-      itemStyle: {
-        color: 'transparent'
-      }
-    }
-    for (let i = 0; i < chartData.length; i++) {
-      pieData1.push({
-        ...chartData[i],
-        itemStyle: {
-          borderRadius: 100,
-          shadowColor: '#2a2a34',
-          shadowBlur: 5,
-          shadowOffsetY: 0,
-          shadowOffsetX: 0,
-          borderColor: '#2a2a34',
-          borderWidth: 2
-        }
-      })
-      pieData1.push(gapData)
-
-      pieData2.push({
-        ...chartData[i],
-        itemStyle: {
-          borderRadius: 10,
-          color: colorList[i],
-          opacity: 0.1,
-          shadowColor: '#000',
-          shadowBlur: 1,
-          shadowOffsetY: 5,
-          shadowOffsetX: 0
-        }
-      })
-      pieData2.push(gapData)
-    }
-    const option = {
-      backgroundColor: {
-        repeat: 'repeat'
-      },
-      title: [
-        {
-          text: '75.0%',
-          x: '50%',
-          y: '43%',
-          textAlign: 'center',
-          textStyle: {
-            fontSize: '40',
-            fontWeight: '500',
-            color: '#98b5d2',
-            textAlign: 'center',
-            textShadowColor: '#000',
-            textShadowBlur: '1',
-            textShadowOffsetX: 2,
-            textShadowOffsetY: 2
-          }
+          url: 'img/01_44.ac8d50f5.png',
+          title: '征缴率',
+          desc: '96',
+          des: '+2.5%'
         },
         {
-          text: 'DESIGN ELEMENTS',
-          left: '50%',
-          top: '52%',
-          textAlign: 'center',
-          textStyle: {
-            fontSize: '18',
-            fontWeight: '400',
-            color: '#5c5a68',
-            textAlign: 'center',
-            textShadowColor: '#000',
-            textShadowBlur: '1',
-            textShadowOffsetX: 1,
-            textShadowOffsetY: 1
-          }
-        }
-      ],
-      legend: {
-        left: '10%',
-        top: '35%',
-        align: 'left',
-        itemGap: 18,
-        itemWidth: 20,
-        itemHeight: 20,
-        shadowBlur: 10,
-        shadowOffsetY: 0,
-        shadowOffsetX: 0,
-        borderColor: '#2a2a34',
-        borderWidth: 2,
-        textStyle: {
-          color: '#D8DDE3',
-          rich: {
-            name: {
-              verticalAlign: 'right',
-              align: 'left',
-              fontSize: 18,
-              color: '#D8DDE3'
-            },
-            percent: {
-              padding: [0, 0, 0, 10],
-              color: '#D8DDE3',
-              fontSize: 18
-            }
-          }
-        },
-        formatter: (name) => {
-          const item = chartData.find((i) => {
-            return i.name === name
-          })
-          const p = ((item.value / sum) * 100).toFixed(0)
-          return '{name|' + name + '}' + '{percent|' + p + '}' + ' %'
-        }
-      },
-
-      color: colorList,
-
-      series: [
-        {
-          type: 'pie',
-          z: 3,
-          roundCap: true,
-          radius: ['44%', '51%'],
-          center: ['50%', '50%'],
-          label: {
-            show: false
-          },
-          labelLine: {
-            show: false
-          },
-          data: pieData1
+          url: 'img/01_62.7bb5b58e.png',
+          title: '补缴金额',
+          desc: '243.6',
+          des: '+2.5%'
         },
         {
-          type: 'pie',
-          z: 2,
-          radius: ['40%', '55%'],
-          center: ['50%', '50%'],
-          label: {
-            show: false
-          },
-          labelLine: {
-            show: false
-          },
-          silent: true,
-          data: pieData2
+          url: '',
+          title: '退费金额金额',
+          desc: '34.56',
+          des: '+2.5%'
         }
       ]
     }
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option)
+  },
+  components: {
+    HeadItem,
+    ListItem,
+    ChartItem
+  },
+  mounted () {
+    item(this.$refs.ma)
   }
 }
 </script>
 
 <style lang='scss' scoped>
+.container {
+  width: 1920px;
+  height: 1080px;
+  background-color: #10171f;
+  nav {
+    width: 1840px;
+    height: 100px;
+    border: solid 1px #2564ae;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+  }
+  main {
+    width: 1840px;
+    height: 829px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    ul{
+      width: 300px;
+      display: flex;
+      li{
 
+      }
+    }
+  }
+}
 </style>
