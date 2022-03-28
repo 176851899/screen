@@ -43,7 +43,7 @@ export default {
 .chart-item {
   margin-top: 15px;
   width: 420px;
-  height: 489px;
+  height: 550px;
   background-color: #071018 !important;
   border: solid 1px #2564ae;
   position: relative;

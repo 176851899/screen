@@ -7,6 +7,9 @@ export default {
   name: '',
   data () {
     return {}
+  },
+  mounted () {
+
   }
 }
 </script>

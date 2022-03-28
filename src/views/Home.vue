@@ -14,7 +14,7 @@
     <main>
       <chart-item width="420px" style="margin-right: 15px">
         <template #item>
-          <div id="main" style="width: 420px; height: 440px" ref="ma"></div>
+          <div id="main" style="width: 420px; height: 400px" ref="per"></div>
         </template>
       </chart-item>
       <chart-item
@@ -34,15 +34,34 @@
       </template>
 
       </chart-item>
-      <chart-item width="420px" title="各险种缴费补缴/退缴情况" :show="false"></chart-item>
-      <chart-item width="600px" title="缴费趋势分析" option="全部"></chart-item>
-       <chart-item width="600px" title="征缴趋势分析" :show="false" style="margin-left:11px;margin-right:11px;" ></chart-item>
-        <chart-item width="600px" title="补缴/退缴趋势分析" option="全部"></chart-item>
+      <chart-item width="420px" title="各险种缴费补缴/退缴情况" :show="false">
+       <template #item>
+          <div  style="width: 420px; height: 420px" ref="rader"></div>
+        </template>
+
+      </chart-item>
+      <chart-item width="600px" title="缴费趋势分析" option="全部">
+
+         <template #item>
+          <div id="main" style="width: 620px; height: 250px" ref="bar"></div>
+        </template>
+      </chart-item>
+       <chart-item width="600px" title="征缴趋势分析" :show="false" style="margin-left:11px;margin-right:11px;" >
+  <template #item>
+          <div id="main" style="width: 600px; height: 300px" ref="axis"></div>
+        </template>
+
+       </chart-item>
+        <chart-item width="600px" title="补缴/退缴趋势分析" option="全部">
+            <template #item>
+          <div id="main" style="width: 600px; height: 290px" ref="mix"></div>
+        </template>
+        </chart-item>
     </main>
   </div>
 </template>
 <script>
-import { item } from '../utils/echars'
+import { per, rader, bar, axis, mix } from '../utils/echars'
 import HeadItem from '../components/HeadItem.vue'
 import ListItem from '../components/ListItem.vue'
 import ChartItem from '../components/ChartItem.vue'
@@ -102,7 +121,11 @@ export default {
     ChartItem
   },
   mounted () {
-    item(this.$refs.ma)
+    per(this.$refs.per)
+    rader(this.$refs.rader)
+    bar(this.$refs.bar)
+    axis(this.$refs.axis)
+    mix(this.$refs.mix)
   }
 }
 </script>
