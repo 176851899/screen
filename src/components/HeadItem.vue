@@ -51,12 +51,13 @@ header {
   }
   .title {
     width: 180px;
-    height: 23px;
+    height: 40px;
     font-family: SourceHanSansSC-Bold;
     font-size: 24px;
     font-weight: normal;
     font-stretch: normal;
     // line-height: 40px;
+    margin-bottom: 10px;
     letter-spacing: 2px;
     color: #fefefe;
     background-color: "";
@@ -70,6 +71,7 @@ header {
     letter-spacing: 0px;
     color: #ffffff;
     border: 1px solid #1851ab;
+
   }
   .data-one {
     letter-spacing: 0px;
@@ -79,6 +81,9 @@ header {
   }
   .data-two{
     margin-left: 30px;
+    display: flex;
+    align-items: center;
+     background: url("../assets/jiao2.png") no-repeat  right center ;
   }
 }
 </style>

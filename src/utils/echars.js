@@ -3,8 +3,8 @@ var dataArr = 4
 const per = element => {
   var myChart = echarts.init(element)
   var seriesData = [
-    { name: '失业保险', value: '机关养老' },
-    { name: '城居养老', value: '城居养老' }
+    { name: '失业保险', value: '机关养老', value2: '334.5万元25%' },
+    { name: '城居养老', value: '城居养老', value2: '334.5万元25%' }
   ]
   const option = {
     // backgroundColor: '#2c343c',
@@ -13,30 +13,37 @@ const per = element => {
       left: 'center',
       top: 20,
       textStyle: {
-        color: '#ccc'
+        color: '#fff'
       }
     },
     legend: {
+      // itemWidth: 14, // 图例标记的图形宽度。[ default: 25 ]
+      // itemHeight: 14, // 图例标记的图形高度。[ default: 14 ]
       width: '70%',
       left: 'center',
       textStyle: {
-        color: '#fff',
+        // color: '#fff',
         fontSize: 16,
         rich: {
           name: {
             color: 'rgba(255,255,255,0.5)',
-            fontSize: 10,
-            lineHeight: 15
+            fontSize: 12,
+            align: 'left'
           },
           value: {
-            color: 'rgba(255,255,255,0.5)',
-            fontSize: 10,
-            lineHeight: 15
+            color: '#ffff',
+            fontSize: 16,
+            lineHeight: 15,
+            height: 20,
+            align: 'left',
+            padding: [-20, 0, 0, 0]
           },
           rate: {
-            color: 'rgba(255,255,255,0.9)',
-            fontSize: 10,
-            lineHeight: 10
+            color: '#f88d2d',
+            fontSize: 14,
+            lineHeight: 10,
+            padding: [-50, 0, 0, 0],
+            align: 'left'
           }
 
         }
@@ -44,13 +51,15 @@ const per = element => {
       icon: 'circle',
       right: '0',
       bottom: '0',
-      padding: [40, 60],
+      itemWidth: 10, // 图例标记的图形宽度。[ default: 25 ]
+      itemHeight: 10,
+      padding: [50, 50],
       itemGap: 40,
       data: ['失业保险', '城居养老'],
       formatter: (name) => {
         if (seriesData.length) {
           const item = seriesData.filter((item) => item.name === name)[0]
-          const i = `{name|${name}}\n{rate| ${item.value}}`
+          const i = `{name|${name}}\n{value| ${item.value}}\n{rate| ${item.value2}}`
           return i
         }
       }
@@ -74,12 +83,12 @@ const per = element => {
 
         name: '访问来源',
         type: 'pie',
-        radius: ['20%', '60%'], // 空心配置
+        radius: ['20%', '40%'], // 配置圆大小
         emphasis: {
           show: false
         },
-        center: ['53%', '40%'],
-        color: ['rgb(131,249,103)', '#FBFE27', '#FE5050', '#1DB7E5'], // '#FBFE27','rgb(11,228,96)','#FE5050'
+        center: ['50%', '50%'],
+        color: ['#0095fc', '#15c3ca', '#1238cb', '#ca6e19', '#00b068'], // '#FBFE27','rgb(11,228,96)','#FE5050'
         data: [
           {
             value: 285,
@@ -99,7 +108,7 @@ const per = element => {
             name: '失业保险'
           },
           {
-            value: 300,
+            value: 360,
             name: '机关养老'
           }
         ].sort(function (a, b) {
@@ -109,10 +118,10 @@ const per = element => {
 
         label: {
           normal: {
-            formatter: ['{b|{b}}', '{c|{c}万元}'].join('\n'),
+            formatter: ['{b|{b}}', '{c|{c}}' + '万元'].join('\n'),
             rich: {
               c: {
-                color: 'rgb(241,246,104)',
+                color: '#fff',
                 fontSize: 16,
                 fontWeight: 'bold',
                 lineHeight: 5
@@ -141,68 +150,68 @@ const per = element => {
             shadowBlur: 50
           }
         }
-      },
-      // 最外部进度条
-      {
-        name: '最外部进度条',
-        type: 'gauge',
-        radius: '80%',
-        splitNumber: 10,
-        axisLine: {
-          lineStyle: {
-            color: [
-              [
-                dataArr / 10,
-                new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  {
-                    offset: 0,
-                    color: 'rgba(145,207,255,0)'
-                  },
-                  {
-                    offset: 0.5,
-                    color: 'rgba(145,207,255,0.2)'
-                  },
-                  {
-                    offset: 1,
-                    color: 'rgba(145,207,255,1)'
-                  }
-                ])
-              ],
-              [1, 'rgba(28,128,245,.0)']
-            ],
-            width: 3
-          }
-        },
-        axisLabel: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        },
-        splitLine: {
-          show: false
-        },
-        itemStyle: {
-          show: false
-        },
-        detail: {
-          show: false
-        },
-        title: {
-        // 标题
-          show: false
-        },
-        data: [
-          {
-            name: 'title',
-            value: dataArr
-          }
-        ],
-        pointer: {
-          show: false
-        },
-        animationDuration: 4000
       }
+      // 最外部进度条
+      // {
+      //   name: '最外部进度条',
+      //   type: 'gauge',
+      //   radius: '80%',
+      //   splitNumber: 10,
+      //   axisLine: {
+      //     lineStyle: {
+      //       color: [
+      //         [
+      //           dataArr / 10,
+      //           new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+      //             {
+      //               offset: 0,
+      //               color: 'rgba(145,207,255,0)'
+      //             },
+      //             {
+      //               offset: 0.5,
+      //               color: 'rgba(145,207,255,0.2)'
+      //             },
+      //             {
+      //               offset: 1,
+      //               color: 'rgba(145,207,255,1)'
+      //             }
+      //           ])
+      //         ],
+      //         [1, 'rgba(28,128,245,.0)']
+      //       ],
+      //       width: 3
+      //     }
+      //   },
+      //   axisLabel: {
+      //     show: false
+      //   },
+      //   axisTick: {
+      //     show: false
+      //   },
+      //   splitLine: {
+      //     show: false
+      //   },
+      //   itemStyle: {
+      //     show: false
+      //   },
+      //   detail: {
+      //     show: false
+      //   },
+      //   title: {
+      //   // 标题
+      //     show: false
+      //   },
+      //   data: [
+      //     {
+      //       name: 'title',
+      //       value: dataArr
+      //     }
+      //   ],
+      //   pointer: {
+      //     show: false
+      //   },
+      //   animationDuration: 4000
+      // }
     ]
   }
   // 使用刚指定的配置项和数据显示图表。
@@ -211,22 +220,57 @@ const per = element => {
 const rader = element => {
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(element)
+  var seriesData = [
+    { name: '补缴最多险种', value: '机关养老', value2: '334.5万元25%' },
+    { name: '退缴最少险种', value: '城居养老', value2: '300.5万元25%' }
+  ]
   const option = {
     color: ['#00c2ff', '#f9cf67', '#e92b77'],
-    data: ['补缴最多险和', '退缴最多险和'],
+    data: ['补缴最多险种', '退缴最多险种'],
     legend: {
       show: true,
-      // icon: 'circle',//图例形状
-      bottom: 45,
+      icon: 'circle', // 图例形状
+      bottom: 20,
       center: 0,
-      itemWidth: 14, // 图例标记的图形宽度。[ default: 25 ]
-      itemHeight: 14, // 图例标记的图形高度。[ default: 14 ]
+      itemWidth: 10, // 图例标记的图形宽度。[ default: 25 ]
+      itemHeight: 10, // 图例标记的图形高度。[ default: 14 ]
       itemGap: 15, // 图例每项之间的间隔。[ default: 10 ]横向布局时为水平间隔，纵向布局时为纵向间隔。
       textStyle: {
         fontSize: 14,
-        color: '#ade3ff'
+        color: '#ade3ff',
+        align: 'center',
+        rich: {
+          name: {
+            color: 'rgba(255,255,255,0.5)',
+            fontSize: 12,
+            align: 'left'
+          },
+          value: {
+            color: '#ffff',
+            fontSize: 16,
+            lineHeight: 15,
+            height: 20,
+            align: 'left',
+            padding: [-20, 0, 0, 0]
+          },
+          rate: {
+            color: '#f88d2d',
+            fontSize: 14,
+            lineHeight: 10,
+            padding: [-50, 0, 0, 0],
+            align: 'left'
+          }
+
+        }
       },
-      data: ['补缴最多险和', '退缴最多险和']
+      data: ['补缴最多险种', '退缴最少险种'],
+      formatter: (name) => {
+        if (seriesData.length) {
+          const item = seriesData.filter((item) => item.name === name)[0]
+          const i = `{name|${name}}\n{value| ${item.value}}\n{rate| ${item.value2}}`
+          return i
+        }
+      }
     },
     radar: [
       {
@@ -297,8 +341,13 @@ const rader = element => {
         }
       }
     ],
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b} : {c} ({d}%)'
+    },
     series: [
       {
+
         name: '雷达图',
         type: 'radar',
         itemStyle: {
@@ -310,7 +359,7 @@ const rader = element => {
         },
         data: [
           {
-            name: '补缴最多险和',
+            name: '补缴最多险种',
             value: [85, 65, 55, 90, 82],
             areaStyle: {
               normal: {
@@ -368,7 +417,7 @@ const rader = element => {
             // }
           },
           {
-            name: '退缴最多险和',
+            name: '退缴最少险种',
             value: [50, 20, 45, 30, 75],
             symbolSize: 2.5,
             itemStyle: {
@@ -420,6 +469,8 @@ const rader = element => {
 }
 const bar = element => {
   var myChart = echarts.init(element)
+  const data = [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188]
+  const sideData = data.map((item) => item + 4.5)
   var data1 = [
     400, 199, 70, 229, 329, 229, 199, 299, 499, 70, 199, 568
   ]
@@ -454,20 +505,44 @@ const bar = element => {
       top: '25%',
       bottom: '10%' // 也可设置left和right设置距离来控制图表的大小
     },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow',
-        label: {
-          show: true
-        }
-      }
-    },
+    // tooltip: {
+    //   trigger: 'axis',
+    //   axisPointer: {
+    //     type: 'shadow',
+    //     label: {
+    //       show: true
+    //     }
+    //   }
+    // },
     legend: {
       data: ['征缴总额', '同比'],
       top: '15%',
+      // itemStyle:[''],
+      left: '22%',
+      itemWidth: 12,
+      itemHeight: 12,
       textStyle: {
         color: '#ffffff'
+      }
+    },
+    // Y显示线
+    tooltip: {
+      show: true,
+      trigger: 'axis', // axis , item
+      backgroundColor: 'RGBA(0, 49, 85, 1)',
+      borderColor: 'rgba(0, 151, 251, 1)',
+      borderWidth: 1,
+      borderRadius: 0,
+      textStyle: {
+        color: '#BCE9FC',
+        fontSize: 16,
+        align: 'left'
+      },
+      axisPointer: {
+        // type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+        lineStyle: {
+          color: '#21e1e4'
+        }
       }
     },
     xAxis: {
@@ -488,7 +563,6 @@ const bar = element => {
       axisLine: {
         show: true, // 隐藏X轴轴线
         lineStyle: {
-          color: '#01FCE3'
         }
       },
       axisTick: {
@@ -497,7 +571,7 @@ const bar = element => {
       axisLabel: {
         show: true,
         textStyle: {
-          color: '#ebf8ac' // X轴文字颜色
+          color: '#838a92' // X轴文字颜色
         }
       }
     },
@@ -506,7 +580,7 @@ const bar = element => {
         type: 'value',
         name: '金额 (万元)',
         nameTextStyle: {
-          color: '#ffff'
+          color: '#838a92'
         },
         splitLine: {
           show: false
@@ -514,24 +588,24 @@ const bar = element => {
         axisTick: {
           show: true
         },
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: '#FFFFFF'
-          }
-        },
+        // axisLine: {
+        //   show: true,
+        //   lineStyle: {
+        //     color: '#FFFFFF'
+        //   }
+        // },
         axisLabel: {
           show: true,
           textStyle: {
-            color: '#ebf8ac'
+            color: '#838a92'
           }
         }
       },
       {
         type: 'value',
-        name: '同比',
+        name: '同比 (%)',
         nameTextStyle: {
-          color: '#ebf8ac'
+          color: '#838a92'
         },
         position: 'right',
         splitLine: {
@@ -545,9 +619,9 @@ const bar = element => {
         },
         axisLabel: {
           show: true,
-          formatter: '{value} %', // 右侧Y轴文字显示
+          formatter: '{value} ', // 右侧Y轴文字显示
           textStyle: {
-            color: '#2d9ef9'
+            color: '#838a92'
           }
         }
       },
@@ -581,42 +655,106 @@ const bar = element => {
       {
         name: '同比',
         type: 'line',
+        barWidth: 7,
         yAxisIndex: 1, // 使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用
         // smooth: true, // 平滑曲线显示
         showAllSymbol: true, // 显示所有图形。
-        symbol: 'circle', // 标记的图形为实心圆
+        // symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABRCAYAAABFTSEIAAAACXBIWXMAAAsSAAALEgHS3X78AAAEp0lEQVR42u3cz4sjRRTA8W9Vd3Vn8mMmjj9WQWSRZQ+CsH+B7MnDIgiCd0E8CYJ/gOAIelo8ehUP/gF6WLw5/gMueFP2sIcF0dHd2Z1kknR11fOQZJJJMtlZd03H7HtQpNOTnpn+8Lrm1etmjIig8e/DKoECKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIqoAJudKTr+osZMNPvBUQBHwHsPF9fB9R0DeHMOQ6T6WOrhEzXBM4swDOL0M6CrArRVoq3t2dGUIb9fTvatg8ZZup1PDBgzPmy98mey6qfzjLz2WaWjEUZKEvGyi9nWyneMOvGIyFQo2Sbg4MUSChpU9IeTTUpJdsEajPZOJeJG5uBZj7rLLduWS5dGm6XNLEELOFUFj54ACJCaychkpDSASK3bwsXL0YgVpWJKwM0iy9Zy8HdGru7jvt3Pbu7w0wES7drTwAbjTHMGCsQcIAnYTC1/wRx0wEnl27JNgZI8HQ6Kc1mQq83RNzaMjPzXqDbjTQaJRFLxIyyMSxAXEkWrhrQzAAmo5HOjCQf7jflILxOkohL+aUPgV4vEGNJo+E5PAy02+UIMEwBxo0CPDP7Dg5SnEtpt1PA0e87XO25FOoh8IYIH2Y5b45RzGAQBiIltZoHxqMcjbksXAVgdc2EQMYzzzdotyeZWKuleULXJtwT4SODfC2QCWR+IF9KnjuX1Xbo99Op7LVE8iXlz0YBTk5SyLEEjo5OLuccEoFUvHfO+reuUPx4zftXAIcx1hdcF+/TvFab4A0Bs0VwqyhpVnkJT89/Q4DDQ0e77YCMwIUsFMeFZD856699URRvX4nxE4A/jbnxXp7v4Zw3ReGNSDHI8wFQjIafuoyn58L/fB6sth/Ybg9fez2TRC6QZcZYvgHsazF+MP7YCyLXcM7gvSXLDGBqYDg+NhwdmSpPoTrAkub0W+f4FSB1fDucIunMHSLpO8WAH0rSy8u+19MBCHB4OHzd2pI+CEUhpigEiN+l6WcdY252jLn5s7Wf472ImPcN8pUl/tEHoV4XWq1Ke4KrLmPsTA3oODpytFoOyJKSyzHyMSIxteWngMW5cSEdDJQUhTdZVgxOz3/+jFJm4+bA2e5JpNU6WZ4Fw99JwnWMKccwpeddP+B7GZTNUPKqybJy0O+Hs1YfMz9swwvpB8fbGDG0GuGkkK7V0hxSmZQpABI8l2z0v3sJf50qpAMJCd2qCulql3LD1lRGQjm7lEsDz0rkxTQOfiPPxUBcuJTbbhss/Y1eyi3NwsmKInmkZsKk5gtPUzNhvp11507CSy/X6XYStpvFudpZw1ZWIOF4Cq6SdtbKbioJyAhRTu3u9yMJXerN+ugvaQQsjcZ8Q3VnZwxlSDhe1lB9GjrSw5b+1avT8+Jw+979nNaOI6U3KpTrWAosxVQmygK4ld8X0ZtK/7eViExD7O1NQPb3T7fsl4/4sBpwYzPwjFbTo95Yl9l9Vd1YN1X/147HebSjary1AHyc5qc+XLQEQx9ve8Kg6xr6hKoCKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIq4JrHP8fEWV8FMTmOAAAAAElFTkSuQmCC', // 标记的图形为实心圆
         symbolSize: 10, // 标记的大小
         itemStyle: {
           // 折线拐点标志的样式
-          color: '#058cff'
+          color: '#70a7f9'
         },
         lineStyle: {
-          color: '#2d9ef9'
+          color: '#70a7f9'
         },
+        // 投影
         areaStyle: {
-          color: 'rgba(5,140,255, 0.2)'
+          color: 'rgba(5,140,255,0.2)'
         },
-        data: [70, 60, 80, 70, 50, 50, 60, 70, 20, 80, 90, 40]
+        data: [70, 40, 80, 70, 50, 50, 60, 70, 20, 80, 30, 40]
+      },
+      {
+        name: '征缴总额',
+        tooltip: {
+          show: false
+        },
+        type: 'bar',
+        barWidth: 9,
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#0B4EC3' // 0% 处的颜色
+                },
+                {
+                  offset: 0.6,
+                  color: '#138CEB' // 60% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: '#17AAFE' // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        data: data,
+        barGap: 0
       },
       {
         name: '征缴总额',
         type: 'bar',
-        barWidth: 15,
+        barWidth: 3,
         itemStyle: {
           normal: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              {
-                offset: 0,
-                color: '#00FFE3'
-              },
-              {
-                offset: 1,
-                color: '#4693EC'
-              }
-            ])
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#1782e0'
+                },
+                {
+                  offset: 1,
+                  color: '#1c83f9'
+                }
+              ],
+              false
+            )
           }
         },
-        data: [100, 200, 300, 300, 400, 500, 400, 300, 200, 400, 400, 700]
+        barGap: 0,
+        data: sideData
+      },
+      {
+        name: '征缴总额',
+        tooltip: {
+          show: false
+        },
+        type: 'pictorialBar',
+        itemStyle: {
+          borderWidth: 1,
+          borderColor: '#0571D5',
+          color: '#1779E0'
+        },
+        symbol: 'path://M 0,0 l 120,0 l -30,60 l -120,0 z',
+        symbolSize: ['13', '13'],
+        symbolOffset: ['0', '-11'],
+        // symbolRotate: -5,
+        symbolPosition: 'end',
+        data: data,
+        z: 2
       }
     ]
   }
@@ -625,7 +763,7 @@ const bar = element => {
 }
 const axis = element => {
   var myChart = echarts.init(element)
-  const colorList = ['#9E87FF', '#73DDFF', '#fe9a8b', '#F56948', '#9E87FF']
+  const colorList = ['#0689fd', '#40d2bd', '#d94156']
   const option = {
     title: {
       textStyle: {
@@ -636,36 +774,36 @@ const axis = element => {
       top: '5%'
     },
     legend: {
+      show: true,
       top: '5%',
       left: '18%',
-      itemWidth: 6,
+      itemWidth: 13,
+      itemHeight: 13,
       itemGap: 20,
+      icon: 'line',
       textStyle: {
         color: '#556677'
       }
     },
+    // Y显示线
     tooltip: {
-      trigger: 'axis',
-      type: 'shadow',
-      axisPointer: {
-        label: {
-          show: true,
-          backgroundColor: '#fff',
-          color: '#556677',
-          borderColor: 'rgba(0,0,0,0)',
-          shadowColor: 'rgba(0,0,0,0)',
-          shadowOffsetY: 0
-        },
-        lineStyle: {
-          width: 0
-        }
-      },
-      backgroundColor: '#fff',
+      show: true,
+      trigger: 'axis', // axis , item
+      backgroundColor: 'RGBA(0, 49, 85, 1)',
+      borderColor: 'rgba(0, 151, 251, 1)',
+      borderWidth: 1,
+      borderRadius: 0,
       textStyle: {
-        color: '#5c6c7c'
+        color: '#BCE9FC',
+        fontSize: 16,
+        align: 'left'
       },
-      padding: [10, 10],
-      extraCssText: 'box-shadow: 1px 0 2px 0 rgba(163,163,163,0.5)'
+      axisPointer: {
+        // type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+        lineStyle: {
+          color: '#21e1e4'
+        }
+      }
     },
     grid: {
       top: '15%'
@@ -685,7 +823,7 @@ const axis = element => {
         axisLabel: {
           interval: 0,
           textStyle: {
-            color: '#556677'
+            color: '#838a92'
           },
           // 默认x轴字体大小
           fontSize: 12,
@@ -757,7 +895,7 @@ const axis = element => {
         type: 'value',
         name: '金额 (万元)',
         nameTextStyle: {
-          color: '#ffff'
+          color: '#838a92'
         },
         splitLine: {
           show: false
@@ -765,24 +903,18 @@ const axis = element => {
         axisTick: {
           show: true
         },
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: '#FFFFFF'
-          }
-        },
         axisLabel: {
           show: true,
           textStyle: {
-            color: '#ebf8ac'
+            color: '#838a92'
           }
         }
       },
       {
         type: 'value',
-        name: '同比',
+        name: '同比 (%)',
         nameTextStyle: {
-          color: '#ebf8ac'
+          color: '#838a92'
         },
         position: 'right',
         splitLine: {
@@ -796,9 +928,9 @@ const axis = element => {
         },
         axisLabel: {
           show: true,
-          formatter: '{value} %', // 右侧Y轴文字显示
+          formatter: '{value} ', // 右侧Y轴文字显示
           textStyle: {
-            color: '#2d9ef9'
+            color: '#838a92'
           }
         }
       }
@@ -815,16 +947,17 @@ const axis = element => {
 
         yAxisIndex: 0,
         showSymbol: false,
+        // 折线配置
         lineStyle: {
-          width: 5,
+          width: 2,
           color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
             {
               offset: 0,
-              color: '#9effff'
+              color: '#0689fd'
             },
             {
               offset: 1,
-              color: '#9E87FF'
+              color: '#0575d7'
             }
           ]),
           shadowColor: 'rgba(158,135,255, 0.3)',
@@ -836,6 +969,9 @@ const axis = element => {
             color: colorList[0],
             borderColor: colorList[0]
           }
+        },
+        areaStyle: {
+          color: 'rgba(5,140,255,0.3)'
         }
       },
       {
@@ -847,15 +983,15 @@ const axis = element => {
         yAxisIndex: 0,
         showSymbol: false,
         lineStyle: {
-          width: 5,
+          width: 2,
           color: new echarts.graphic.LinearGradient(1, 1, 0, 0, [
             {
               offset: 0,
-              color: '#73DD39'
+              color: '#37dbc2'
             },
             {
               offset: 1,
-              color: '#73DDFF'
+              color: '#37dbc6'
             }
           ]),
           shadowColor: 'rgba(115,221,255, 0.3)',
@@ -878,15 +1014,15 @@ const axis = element => {
         symbol: 'circle',
         showSymbol: false,
         lineStyle: {
-          width: 5,
+          width: 2,
           color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
             {
               offset: 0,
-              color: '#fe9a'
+              color: '#d94156'
             },
             {
               offset: 1,
-              color: '#fe9a8b'
+              color: '#d94159'
             }
           ]),
           shadowColor: 'rgba(254,154,139, 0.3)',
@@ -905,323 +1041,402 @@ const axis = element => {
 
   myChart.setOption(option)
 }
-const mix = element => {
+const mix1 = element => {
   var myChart = echarts.init(element)
-  // mock数据
-  const dataArr = {
-    xdata: ['2101', '2102', '2103', '2104', '2105', '2106', '2107', '2108', '2109', '2110', '2111', '2112'],
-    unvaccinated: [700, 800, 900, 500, 300, 400, 500, 200, 300, 500, 400, 200],
-    unvaccinatedTwo: [400, 200, 300, 300, 500, 200, 100, 100, 300, 400, 500, 600],
-    rateDataOne: [98, 96, 97, 92, 94, 95, 88, 86, 87, 82, 84, 85],
-    rateDataTwo: [88, 86, 87, 82, 84, 85, 95, 96, 97, 92, 94, 95]
-  }
-
-  // tooltip
-  const tooltip = {
-    trigger: 'axis',
-    textStyle: { fontSize: '100%' },
-    formatter: (params) => {
-      const rander = params
-        .map((item) =>
-          item.seriesType !== 'pictorialBar'
-            ? `<div>${item.seriesName}: ${
-              item.seriesType !== 'line' ? item.value : item.value + '%'
-            }</div>`
-            : ''
-        )
-        .join('')
-      return `
-            <div>${params[0].axisValue}</div>
-            ${rander}
-        `
-    }
-  }
-  const legend = {
-    data: [
-      '补缴金额',
-      '补缴同比',
-      '退缴金额',
-      '退缴同比'
-
-    ],
-    textStyle: { fontSize: 12, color: '#fff' },
-    itemWidth: 25,
-    itemHeight: 15,
-    itemGap: 15,
-    top: 0,
-    selectedMode: false
-  }
-  const grid = { top: '18%', left: '10%', right: '6%', bottom: '25%' }
-  // xAxis
-  const xAxis = {
-    axisTick: { show: true },
-    axisLine: { lineStyle: { color: 'rgba(255,255,255, .2)' } },
-    axisLabel: { textStyle: { fontSize: 12, color: '#fff' } },
-    data: dataArr.xdata
-  }
-
-  // yAxis
-  const yAxis = [
-    {
-      axisTick: { show: false },
-      axisLine: { show: false },
-      splitLine: { lineStyle: { color: 'rgba(255,255,255, .05)' } },
-      axisLabel: { textStyle: { fontSize: 12, color: '#fff' } }
-    },
-    {
-      show: true,
-      max: 100,
-      splitLine: { show: false },
-      axisLine: { show: false },
-      axisTick: { show: false },
-      axisLabel: {
-        textStyle: { fontSize: 16, color: '#fff' },
-        formatter: (params) => {
-          return `${params}%`
-        }
-      }
-    }
+  const data = [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188]
+  const sideData = data.map((item) => item + 4.5)
+  var data1 = [
+    400, 199, 70, 229, 329, 229, 199, 299, 499, 70, 199, 568
   ]
-
-  // series
-  const series = [
-    {
-      z: 1,
-      name: '补缴金额',
-      type: 'pictorialBar',
-      symbolPosition: 'end',
-      data: dataArr.vaccination,
-      symbol: 'diamond',
-      symbolOffset: ['-50%', '-50%'],
-      symbolSize: [29, 19],
-      itemStyle: {
-        borderColor: '#2fffa4',
-        color: '#2fffa4'
-      }
-    },
-    {
-      z: 1,
-      type: 'bar',
-      name: '补缴同比',
-      barWidth: 30,
-      barGap: '-50%',
-      data: dataArr.vaccination,
-      itemStyle: {
-        color: {
-          type: 'linear',
-          x: 0,
-          x2: 1,
-          y: 0,
-          y2: 0,
-          colorStops: [
-            { offset: 0, color: 'rgba(29, 245, 160, .7)' },
-            { offset: 0.5, color: 'rgba(29, 245, 160, .7)' },
-            { offset: 0.5, color: 'rgba(29, 245, 160, .3)' },
-            { offset: 1, color: 'rgba(29, 245, 160, .3)' }
-          ]
-        }
-      }
-    },
-    {
-      z: 2,
-      name: '退缴金额',
-      type: 'pictorialBar',
-      symbolPosition: 'end',
-      data: dataArr.unvaccinated,
-      symbol: 'diamond',
-      symbolOffset: [0, '-50%'],
-      symbolSize: [29, 19],
-      itemStyle: {
-        borderColor: '#32ffee',
-        color: '#32ffee'
-      }
-    },
-    {
-      z: 2,
-      type: 'bar',
-      name: '已完成第一次接种',
-      barWidth: 30,
-      data: dataArr.unvaccinated,
-      itemStyle: {
-        color: {
-          type: 'linear',
-          x: 0,
-          x2: 1,
-          y: 0,
-          y2: 0,
-          colorStops: [
-            { offset: 0, color: 'rgba(50, 255, 238, .7)' },
-            { offset: 0.5, color: 'rgba(50, 255, 238, .7)' },
-            { offset: 0.5, color: 'rgba(50, 255, 238, .3)' },
-            { offset: 1, color: 'rgba(50, 255, 238, .3)' }
-          ]
-        }
-      }
-    },
-    {
-      z: 3,
-      name: '上部1',
-      type: 'pictorialBar',
-      symbolPosition: 'end',
-      data: dataArr.unvaccinatedTwo,
-      symbol: 'diamond',
-      symbolOffset: ['50%', '-50%'],
-      symbolSize: [29, 19],
-      itemStyle: {
-        borderColor: '#ffd11a',
-        color: '#ffd11a'
-      }
-    },
-    {
-      z: 3,
-      type: 'bar',
-      name: '已完成第二次接种',
-      barWidth: 30,
-      data: dataArr.unvaccinatedTwo,
-      itemStyle: {
-        color: {
-          type: 'linear',
-          x: 0,
-          x2: 1,
-          y: 0,
-          y2: 0,
-          colorStops: [
-            { offset: 0, color: 'rgba(255, 209, 26, .7)' },
-            { offset: 0.5, color: 'rgba(255, 209, 26, .7)' },
-            { offset: 0.5, color: 'rgba(255, 209, 26, .3)' },
-            { offset: 1, color: 'rgba(255, 209, 26, .3)' }
-          ]
-        }
-      }
-    },
-    {
-      z: 9,
-      yAxisIndex: 1,
-      name: '完成第一次接种率',
-      type: 'line',
-      symbol: 'path://M9.312,4.594 C12.074,4.594 14.313,6.832 14.313,9.594 C14.313,12.355 12.074,14.594 9.312,14.594 C6.551,14.594 4.312,12.355 4.312,9.594 C4.312,6.832 6.551,4.594 9.312,4.594 Z',
-      symbolSize: [10, 10],
-      color: {
-        type: 'linear',
-        x: 1,
-        y: 0,
-        x2: 0,
-        y2: 0,
-        // 0% 处的颜色                           // 100% 处的颜色
-        colorStops: [
-          { offset: 0, color: '#32ffee' },
-          { offset: 1, color: '#8afff5' }
-        ],
-        global: false // 缺省为 false
-      },
-      lineStyle: {
-        color: {
-          type: 'linear',
-          x: 1,
-          y: 0,
-          x2: 0,
-          y2: 0,
-          // 0% 处的颜色                           // 100% 处的颜色
-          colorStops: [
-            { offset: 0, color: '#32ffee' },
-            { offset: 1, color: '#8afff5' }
-          ],
-          global: false // 缺省为 false
-        }
-      },
-      // 修改的是线下区域的颜色
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(
-        // 右/下/左/上
-          0,
-          0,
-          0,
-          1,
-          [
-            { offset: 0, color: 'rgba(50, 255, 238, .1)' },
-            { offset: 1, color: 'transparent' }
-          ]
-        )
-      },
-      label: {
-        show: true,
-        position: 'insideBottomLeft',
-        formatter: (params) => {
-          return `${params.value}%`
-        },
-        textStyle: { fontSize: 16, color: '#32ffee' }
-      },
-      data: dataArr.rateDataOne
-    },
-    {
-      z: 9,
-      yAxisIndex: 1,
-      name: '完成第二次接种率',
-      type: 'line',
-      symbol: 'path://M9.312,4.594 C12.074,4.594 14.313,6.832 14.313,9.594 C14.313,12.355 12.074,14.594 9.312,14.594 C6.551,14.594 4.312,12.355 4.312,9.594 C4.312,6.832 6.551,4.594 9.312,4.594 Z',
-      symbolSize: [10, 10],
-      color: {
-        type: 'linear',
-        x: 1,
-        y: 0,
-        x2: 0,
-        y2: 0,
-        // 0% 处的颜色                           // 100% 处的颜色
-        colorStops: [
-          { offset: 0, color: '#ffd11a' },
-          { offset: 1, color: '#fff5cc' }
-        ],
-        global: false // 缺省为 false
-      },
-      lineStyle: {
-        color: {
-          type: 'linear',
-          x: 1,
-          y: 0,
-          x2: 0,
-          y2: 0,
-          // 0% 处的颜色                           // 100% 处的颜色
-          colorStops: [
-            { offset: 0, color: '#ffd11a' },
-            { offset: 1, color: '#fff5cc' }
-          ],
-          global: false // 缺省为 false
-        }
-      },
-      // 修改的是线下区域的颜色
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(
-        // 右/下/左/上
-          0,
-          0,
-          0,
-          1,
-          [
-            { offset: 0, color: 'rgba(255, 209, 26, .2)' },
-            { offset: 1, color: 'transparent' }
-          ]
-        )
-      },
-      label: {
-        show: true,
-        position: 'insideBottomRight',
-        formatter: (params) => {
-          return `${params.value}%`
-        },
-        textStyle: { fontSize: 16, color: '#ffd11a' }
-      },
-      data: dataArr.rateDataTwo
-    }
+  var data2 = [
+    500, 299, 170, 329, 429, 529, 299, 399, 599, 170, 299, 668
+  ]
+  var xData = [
+    '01月',
+    '02月',
+    '03月',
+    '04月',
+    '05月',
+    '06月',
+    '07月',
+    '08月',
+    '09月',
+    '10月',
+    '11月',
+    '12月'
   ]
   const option = {
-    tooltip,
-    xAxis,
-    yAxis,
-    series,
-    grid,
-    legend,
-    backgroundColor: 'rgba(0, 0, 0, .7)'
+    title: {
+      textStyle: {
+
+        color: '#fff'
+
+      },
+      top: '3%',
+      left: '10%'
+    },
+    grid: {
+      top: '25%',
+      bottom: '10%' // 也可设置left和right设置距离来控制图表的大小
+    },
+    // tooltip: {
+    //   trigger: 'axis',
+    //   axisPointer: {
+    //     type: 'shadow',
+    //     label: {
+    //       show: true
+    //     }
+    //   }
+    // },
+    legend: {
+      data: ['补缴金额', '补缴同比', '退缴金额', '退缴同比'],
+      top: '15%',
+      // itemStyle:[''],
+      left: '22%',
+      itemWidth: 12,
+      itemHeight: 12,
+      textStyle: {
+        color: '#ffffff'
+      }
+    },
+    // Y显示线
+    tooltip: {
+      show: true,
+      trigger: 'axis', // axis , item
+      backgroundColor: 'RGBA(0, 49, 85, 1)',
+      borderColor: 'rgba(0, 151, 251, 1)',
+      borderWidth: 1,
+      borderRadius: 0,
+      textStyle: {
+        color: '#BCE9FC',
+        fontSize: 16,
+        align: 'left'
+      },
+      axisPointer: {
+        // type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+        lineStyle: {
+          color: '#21e1e4'
+        }
+      }
+    },
+    xAxis: {
+      data: [
+        '2101',
+        '2102',
+        '2103',
+        '2104',
+        '2105',
+        '2106',
+        '2107',
+        '2108',
+        '2109',
+        '2110',
+        '2111',
+        '2112'
+      ],
+      axisLine: {
+        show: true, // 隐藏X轴轴线
+        lineStyle: {
+        }
+      },
+      axisTick: {
+        // show: true // 隐藏X轴刻度
+      },
+      axisLabel: {
+        show: true,
+        textStyle: {
+          color: '#838a92' // X轴文字颜色
+        }
+      }
+    },
+    yAxis: [
+      {
+        type: 'value',
+        name: '金额 (万元)',
+        nameTextStyle: {
+          color: '#838a92'
+        },
+        splitLine: {
+          show: false
+        },
+        axisTick: {
+          show: true
+        },
+        // axisLine: {
+        //   show: true,
+        //   lineStyle: {
+        //     color: '#FFFFFF'
+        //   }
+        // },
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#838a92'
+          }
+        }
+      },
+      {
+        type: 'value',
+        name: '同比 (%)',
+        nameTextStyle: {
+          color: '#838a92'
+        },
+        position: 'right',
+        splitLine: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          show: true,
+          formatter: '{value} ', // 右侧Y轴文字显示
+          textStyle: {
+            color: '#838a92'
+          }
+        }
+      },
+      {
+        type: 'value',
+        gridIndex: 0,
+        min: 50,
+        max: 100,
+        splitNumber: 8,
+        splitLine: {
+          show: false
+        },
+        axisLine: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        },
+        splitArea: {
+          show: true,
+          areaStyle: {
+            color: ['rgba(250,250,250,0.0)', 'rgba(250,250,250,0.05)']
+          }
+        }
+      }
+    ],
+    series: [
+      {
+        name: '退缴同比',
+        type: 'line',
+        barWidth: 20,
+        icon: 'line',
+        symbol: 'circle',
+        yAxisIndex: 1, // 使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用
+        // smooth: true, // 平滑曲线显示
+        showAllSymbol: true, // 显示所有图形。
+        // symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABRCAYAAABFTSEIAAAACXBIWXMAAAsSAAALEgHS3X78AAAEp0lEQVR42u3cz4sjRRTA8W9Vd3Vn8mMmjj9WQWSRZQ+CsH+B7MnDIgiCd0E8CYJ/gOAIelo8ehUP/gF6WLw5/gMueFP2sIcF0dHd2Z1kknR11fOQZJJJMtlZd03H7HtQpNOTnpn+8Lrm1etmjIig8e/DKoECKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIqoAJudKTr+osZMNPvBUQBHwHsPF9fB9R0DeHMOQ6T6WOrhEzXBM4swDOL0M6CrArRVoq3t2dGUIb9fTvatg8ZZup1PDBgzPmy98mey6qfzjLz2WaWjEUZKEvGyi9nWyneMOvGIyFQo2Sbg4MUSChpU9IeTTUpJdsEajPZOJeJG5uBZj7rLLduWS5dGm6XNLEELOFUFj54ACJCaychkpDSASK3bwsXL0YgVpWJKwM0iy9Zy8HdGru7jvt3Pbu7w0wES7drTwAbjTHMGCsQcIAnYTC1/wRx0wEnl27JNgZI8HQ6Kc1mQq83RNzaMjPzXqDbjTQaJRFLxIyyMSxAXEkWrhrQzAAmo5HOjCQf7jflILxOkohL+aUPgV4vEGNJo+E5PAy02+UIMEwBxo0CPDP7Dg5SnEtpt1PA0e87XO25FOoh8IYIH2Y5b45RzGAQBiIltZoHxqMcjbksXAVgdc2EQMYzzzdotyeZWKuleULXJtwT4SODfC2QCWR+IF9KnjuX1Xbo99Op7LVE8iXlz0YBTk5SyLEEjo5OLuccEoFUvHfO+reuUPx4zftXAIcx1hdcF+/TvFab4A0Bs0VwqyhpVnkJT89/Q4DDQ0e77YCMwIUsFMeFZD856699URRvX4nxE4A/jbnxXp7v4Zw3ReGNSDHI8wFQjIafuoyn58L/fB6sth/Ybg9fez2TRC6QZcZYvgHsazF+MP7YCyLXcM7gvSXLDGBqYDg+NhwdmSpPoTrAkub0W+f4FSB1fDucIunMHSLpO8WAH0rSy8u+19MBCHB4OHzd2pI+CEUhpigEiN+l6WcdY252jLn5s7Wf472ImPcN8pUl/tEHoV4XWq1Ke4KrLmPsTA3oODpytFoOyJKSyzHyMSIxteWngMW5cSEdDJQUhTdZVgxOz3/+jFJm4+bA2e5JpNU6WZ4Fw99JwnWMKccwpeddP+B7GZTNUPKqybJy0O+Hs1YfMz9swwvpB8fbGDG0GuGkkK7V0hxSmZQpABI8l2z0v3sJf50qpAMJCd2qCulql3LD1lRGQjm7lEsDz0rkxTQOfiPPxUBcuJTbbhss/Y1eyi3NwsmKInmkZsKk5gtPUzNhvp11507CSy/X6XYStpvFudpZw1ZWIOF4Cq6SdtbKbioJyAhRTu3u9yMJXerN+ugvaQQsjcZ8Q3VnZwxlSDhe1lB9GjrSw5b+1avT8+Jw+979nNaOI6U3KpTrWAosxVQmygK4ld8X0ZtK/7eViExD7O1NQPb3T7fsl4/4sBpwYzPwjFbTo95Yl9l9Vd1YN1X/147HebSjary1AHyc5qc+XLQEQx9ve8Kg6xr6hKoCKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIq4JrHP8fEWV8FMTmOAAAAAElFTkSuQmCC', // 标记的图形为实心圆
+        symbolSize: 10, // 标记的大小
+        itemStyle: {
+          // 折线拐点标志的样式
+          color: '#70a7f9'
+        },
+        lineStyle: {
+          color: '#f26d82'
+        },
+        // 投影
+        areaStyle: {
+          color: 'rgba(5,140,255,0.1)'
+        },
+        data: [50, 30, 60, 50, 30, 20, 40, 40, 60, 60, 30, 40]
+      },
+      {
+        name: '补缴同比',
+        type: 'line',
+        barWidth: 20,
+        yAxisIndex: 1, // 使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用
+        // smooth: true, // 平滑曲线显示
+        showAllSymbol: true, // 显示所有图形。
+        // symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABRCAYAAABFTSEIAAAACXBIWXMAAAsSAAALEgHS3X78AAAEp0lEQVR42u3cz4sjRRTA8W9Vd3Vn8mMmjj9WQWSRZQ+CsH+B7MnDIgiCd0E8CYJ/gOAIelo8ehUP/gF6WLw5/gMueFP2sIcF0dHd2Z1kknR11fOQZJJJMtlZd03H7HtQpNOTnpn+8Lrm1etmjIig8e/DKoECKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIqoAJudKTr+osZMNPvBUQBHwHsPF9fB9R0DeHMOQ6T6WOrhEzXBM4swDOL0M6CrArRVoq3t2dGUIb9fTvatg8ZZup1PDBgzPmy98mey6qfzjLz2WaWjEUZKEvGyi9nWyneMOvGIyFQo2Sbg4MUSChpU9IeTTUpJdsEajPZOJeJG5uBZj7rLLduWS5dGm6XNLEELOFUFj54ACJCaychkpDSASK3bwsXL0YgVpWJKwM0iy9Zy8HdGru7jvt3Pbu7w0wES7drTwAbjTHMGCsQcIAnYTC1/wRx0wEnl27JNgZI8HQ6Kc1mQq83RNzaMjPzXqDbjTQaJRFLxIyyMSxAXEkWrhrQzAAmo5HOjCQf7jflILxOkohL+aUPgV4vEGNJo+E5PAy02+UIMEwBxo0CPDP7Dg5SnEtpt1PA0e87XO25FOoh8IYIH2Y5b45RzGAQBiIltZoHxqMcjbksXAVgdc2EQMYzzzdotyeZWKuleULXJtwT4SODfC2QCWR+IF9KnjuX1Xbo99Op7LVE8iXlz0YBTk5SyLEEjo5OLuccEoFUvHfO+reuUPx4zftXAIcx1hdcF+/TvFab4A0Bs0VwqyhpVnkJT89/Q4DDQ0e77YCMwIUsFMeFZD856699URRvX4nxE4A/jbnxXp7v4Zw3ReGNSDHI8wFQjIafuoyn58L/fB6sth/Ybg9fez2TRC6QZcZYvgHsazF+MP7YCyLXcM7gvSXLDGBqYDg+NhwdmSpPoTrAkub0W+f4FSB1fDucIunMHSLpO8WAH0rSy8u+19MBCHB4OHzd2pI+CEUhpigEiN+l6WcdY252jLn5s7Wf472ImPcN8pUl/tEHoV4XWq1Ke4KrLmPsTA3oODpytFoOyJKSyzHyMSIxteWngMW5cSEdDJQUhTdZVgxOz3/+jFJm4+bA2e5JpNU6WZ4Fw99JwnWMKccwpeddP+B7GZTNUPKqybJy0O+Hs1YfMz9swwvpB8fbGDG0GuGkkK7V0hxSmZQpABI8l2z0v3sJf50qpAMJCd2qCulql3LD1lRGQjm7lEsDz0rkxTQOfiPPxUBcuJTbbhss/Y1eyi3NwsmKInmkZsKk5gtPUzNhvp11507CSy/X6XYStpvFudpZw1ZWIOF4Cq6SdtbKbioJyAhRTu3u9yMJXerN+ugvaQQsjcZ8Q3VnZwxlSDhe1lB9GjrSw5b+1avT8+Jw+979nNaOI6U3KpTrWAosxVQmygK4ld8X0ZtK/7eViExD7O1NQPb3T7fsl4/4sBpwYzPwjFbTo95Yl9l9Vd1YN1X/147HebSjary1AHyc5qc+XLQEQx9ve8Kg6xr6hKoCKqACKqCGAiqgAiqghgIqoAIqoIYCKqACKqCGAiqgAiqghgIq4JrHP8fEWV8FMTmOAAAAAElFTkSuQmCC', // 标记的图形为实心圆
+        symbolSize: 10, // 标记的大小
+        itemStyle: {
+          // 折线拐点标志的样式
+          color: '#70a7f9'
+        },
+        lineStyle: {
+          color: '#70a7f9'
+        },
+        // 投影
+        areaStyle: {
+          color: 'rgba(5,140,255,0.2)'
+        },
+        data: [70, 40, 80, 70, 50, 50, 60, 70, 20, 80, 30, 40]
+      },
+      {
+        name: '补缴金额',
+        tooltip: {
+          show: false
+        },
+        type: 'bar',
+        barWidth: 7,
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#0B4EC3' // 0% 处的颜色
+                },
+                {
+                  offset: 0.6,
+                  color: '#138CEB' // 60% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: '#17AAFE' // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        data: data,
+        barGap: 0
+      },
+      {
+        name: '补缴金额',
+        type: 'bar',
+        barWidth: 3,
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#1782e0'
+                },
+                {
+                  offset: 1,
+                  color: '#1c83f9'
+                }
+              ],
+              false
+            )
+          }
+        },
+        barGap: 0,
+        data: sideData
+      },
+      {
+        name: '补缴金额',
+        tooltip: {
+          show: false
+        },
+        type: 'pictorialBar',
+        itemStyle: {
+          borderWidth: 1,
+          borderColor: '#0571D5',
+          color: '#1779E0'
+        },
+        symbol: 'path://M 0,0 l 120,0 l -30,60 l -120,0 z',
+        symbolSize: ['12', '12'],
+        symbolOffset: ['0', '-11'],
+        // symbolRotate: -5,
+        symbolPosition: 'end',
+        data: data,
+        z: 2
+      },
+      {
+        name: '退缴金额',
+
+        tooltip: {
+          show: false
+        },
+        type: 'bar',
+        barWidth: 7,
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              5,
+              2,
+              3,
+              [
+                {
+                  offset: 0,
+                  color: '#f26d82' // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: '#f26d89' // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        data: data,
+        barGap: 0
+      },
+      {
+        name: '退缴金额',
+        type: 'bar',
+        barWidth: 3,
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              1,
+              0,
+              3,
+              [
+                {
+                  offset: 0,
+                  color: '#f26d82' // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: '#f26d89' // 100% 处的颜色
+                }
+              ],
+              false
+            )
+          }
+        },
+        barGap: 0,
+        data: sideData
+      },
+      {
+        name: '退缴金额',
+        tooltip: {
+          show: false
+        },
+        type: 'pictorialBar',
+        itemStyle: {
+          borderWidth: 1,
+          borderColor: '##f26d89',
+          color: '#f26d89'
+        },
+        symbol: 'path://M 0,0 l 120,0 l -30,60 l -120,0 z',
+        symbolSize: ['12', '12'],
+        symbolOffset: ['0', '-8'],
+        // symbolRotate: -5,
+        symbolPosition: 'end',
+        data: data,
+        z: 2
+      }
+
+    ]
   }
+
   myChart.setOption(option)
 }
 export {
@@ -1229,5 +1444,5 @@ export {
   rader,
   bar,
   axis,
-  mix
+  mix1
 }

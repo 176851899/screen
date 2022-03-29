@@ -1,7 +1,9 @@
 <template>
   <div class="list-item">
-    <div class="images" :style="{ backgroundImage: `url(${url})` }"></div>
-
+    <div class="images"  :style="{backgroundImage:`url(${url})`}"></div>
+  <!-- :style="{
+        backgroundImage: 'url(' + filmInfo.poster + ')',
+      }" -->
     <div class="content">
       <p class="title">{{title}}</p>
       <p><span class="desc">{{desc}}</span><span style="margin:0 15px">万元</span><i :style="{color:parseFloat(des)>0?'red':'#258770'}">{{des}}</i></p>
@@ -45,6 +47,7 @@ export default {
     height: 100%;
     // border: solid 2px #21375a;
     background-position: center center;
+
   }
   .content {
     margin-left: 10px;
