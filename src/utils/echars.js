@@ -467,30 +467,21 @@ const rader = element => {
   }
   myChart.setOption(option)
 }
-const bar = element => {
+/***
+ * Book类，代表一个书本.
+ * @constructor
+ * @param {Object} element - 挂载的对象.
+ *@param {Array} obj -数据数组
+ @param {Array} list -数据数组
+ * */
+const bar = (element, obj, list) => {
   var myChart = echarts.init(element)
-  const data = [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188]
-  const sideData = data.map((item) => item + 4.5)
-  var data1 = [
-    400, 199, 70, 229, 329, 229, 199, 299, 499, 70, 199, 568
-  ]
-  var data2 = [
-    500, 299, 170, 329, 429, 529, 299, 399, 599, 170, 299, 668
-  ]
-  var xData = [
-    '01月',
-    '02月',
-    '03月',
-    '04月',
-    '05月',
-    '06月',
-    '07月',
-    '08月',
-    '09月',
-    '10月',
-    '11月',
-    '12月'
-  ]
+
+  // 同比数据
+  var comparedData = [...list]
+  console.log('即时更新')
+  var data = [...obj]
+  var sideData = data.map((item) => item - 20)
   const option = {
     title: {
       textStyle: {
@@ -672,7 +663,7 @@ const bar = element => {
         areaStyle: {
           color: 'rgba(5,140,255,0.2)'
         },
-        data: [70, 40, 80, 70, 50, 50, 60, 70, 20, 80, 30, 40]
+        data: comparedData
       },
       {
         name: '征缴总额',

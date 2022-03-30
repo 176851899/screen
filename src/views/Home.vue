@@ -33,51 +33,54 @@
           </ul>
         </template>
         <template #item>
-          <ul class="hoop">
-            <li class="l">
-              <div class="title-list">288.7</div>
-              <div class="title-listTwo">个人缴费金额</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">288.7</div>
-              <div class="title-listTwo">单位缴费金额</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">258.7</div>
-              <div class="title-listTwo">补缴金额</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">98.7</div>
-              <div class="title-listTwo">退缴金额</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">96%</div>
-              <div class="title-listTwo">征缴率</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">254.6</div>
-              <div class="title-listTwo">缴费总人数</div>
-              <div class="images"></div>
-            </li>
-            <li class="l">
-              <div class="title-list">城职养老</div>
-              <div class="images">
-                <p class="pone">455.7</p>
-                <p class="ptwo">征缴总金额</p>
-              </div>
-            </li>
-          </ul>
+          <div class="animation">
+            <ul class="disk">
+              <li class="l">
+                <div class="title-list">288.7</div>
+                <div class="title-listTwo">个人缴费金额</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">288.7</div>
+                <div class="title-listTwo">单位缴费金额</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">258.7</div>
+                <div class="title-listTwo">补缴金额</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">98.7</div>
+                <div class="title-listTwo">退缴金额</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">96%</div>
+                <div class="title-listTwo">征缴率</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">254.6</div>
+                <div class="title-listTwo">缴费总人数</div>
+                <div class="images"></div>
+              </li>
+              <li class="l">
+                <div class="title-list">城职养老</div>
+                <div class="images">
+                  <p class="pone">455.7</p>
+                  <p class="ptwo">征缴总金额</p>
+                </div>
+              </li>
+            </ul>
+            <div class="rotate"></div>
+          </div>
         </template>
       </chart-item>
       <chart-item width="420px" title="各险种缴费补缴/退缴情况" :show="false">
@@ -167,7 +170,10 @@ export default {
           desc: '34.56',
           des: '+2.5%'
         }
-      ]
+      ],
+      arr: [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188],
+      id: null,
+      list: [70, 40, 80, 70, 50, 50, 60, 70, 20, 70, 30, 40]
     }
   },
   components: {
@@ -178,10 +184,31 @@ export default {
   mounted () {
     per(this.$refs.per)
     rader(this.$refs.rader)
-    bar(this.$refs.bar)
+    bar(this.$refs.bar, this.arr, this.list)
     axis(this.$refs.axis)
     mix1(this.$refs.mix)
     console.log(img1)
+    this.id = setInterval(() => {
+      this.arr = this.arr.map((item) => item + 1)
+      this.list = this.list.map((item) => item - 1)
+      console.log('time')
+    }, 1000)
+  },
+  watch: {
+    // 动态表格
+    arr: {
+      // 处理器
+      handler (newVal) {
+        // console.log(newVal, '55', this.list)
+        console.log('监控成功')
+        bar(this.$refs.bar, newVal, this.list)
+      }
+      // immediate: true, // 组件实例创建时，立刻调用 handler 处理器
+    }
+  },
+  destroyed () {
+    clearInterval(this.id)
+    console.log(this.id, '销毁')
   }
 }
 </script>
@@ -255,165 +282,196 @@ export default {
     }
   }
 }
-.hoop {
+.animation {
   width: 100%;
   height: 450px;
-  position: relative;
-  transform-style: preserve-3d;
-
-  animation: play 5s  linear;
   background: url("../assets/底部001.png") no-repeat center center;
-  .l {
-    width: 100px;
-    height: 120px;
-    margin-top: 10px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    &:nth-child(1) {
-      transform: translate(200px, 210px);
-      .images {
-        background-image: url("../assets/球02-蓝色.png");
-      }
-    }
-    &:nth-child(2) {
-      transform: translate(610px, 213px);
-      .images {
-        background-image: url("../assets/球02-蓝色拷贝.png");
-      }
-    }
-    &:nth-child(3) {
-      transform: translate(70px, 100px);
-      .images {
-        background-image: url("../assets/球02-蓝色拷贝2.png");
-      }
-    }
-    &:nth-child(4) {
-      transform: translate(780px, 100px);
-      .images {
-        background-image: url("../assets/球02-蓝色拷贝3.png");
-      }
-    }
-    &:nth-child(5) {
-      transform: translate(200px, 45px);
-      .images {
-        background-image: url("../assets/球02-蓝色拷贝4.png");
-        background-repeat: no-repeat;
-      }
-    }
-    &:nth-child(6) {
-      transform: translate(600px, 35px);
-      .images {
-        background-image: url("../assets/球02-蓝色拷贝4.png");
-        background-repeat: no-repeat;
-      }
-    }
-    &:nth-child(7) {
-      transform: translate(480px, 162px);
-      .images {
-        background-image: url("../assets/球03-橙色.png");
-        background-repeat: no-repeat;
-      }
-      .title-list,
-      .title-listTwo {
-        color: #f7caa3 !important;
-      }
-    }
-    &:nth-child(8) {
-      transform: translate(290px, 150px);
-      .images {
-        background-image: url("../assets/球03-橙色拷贝.png");
-        background-repeat: no-repeat;
-      }
-      .title-list,
-      .title-listTwo {
-        color: #f7caa3 !important;
-      }
-    }
-    &:nth-child(9) {
-      transform: translate(370px, 30px);
-      width: 170px;
-      height: 170px;
-      .images {
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        background-image: url("../assets/球01.png");
-        background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        .pone {
-          width: 58px;
-          height: 18px;
-          font-family: DINPro-Bold;
-          font-size: 24px;
-          font-weight: normal;
-          font-stretch: normal;
+  position: relative;
+  .disk {
+    position: relative;
+ width: 100%;
+  height: 450px;
+    transform-style: preserve-3d;
 
-          letter-spacing: 0px;
-          color: hsl(16, 85%, 55%);
+    // animation: play 5s  linear;
+    .l {
+      width: 100px;
+      height: 120px;
+      margin-top: 10px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &:nth-child(1) {
+        transform: translate(200px, 210px);
+        .images {
+          background-image: url("../assets/球02-蓝色.png");
         }
-        .ptwo {
-          width: 80px;
-          height: 15px;
+      }
+      &:nth-child(2) {
+        transform: translate(610px, 213px);
+        .images {
+          background-image: url("../assets/球02-蓝色拷贝.png");
+        }
+      }
+      &:nth-child(3) {
+        transform: translate(70px, 100px);
+        .images {
+          background-image: url("../assets/球02-蓝色拷贝2.png");
+        }
+      }
+      &:nth-child(4) {
+        transform: translate(780px, 100px);
+        .images {
+          background-image: url("../assets/球02-蓝色拷贝3.png");
+        }
+      }
+      &:nth-child(5) {
+        transform: translate(200px, 45px);
+        .images {
+          background-image: url("../assets/球02-蓝色拷贝4.png");
+          background-repeat: no-repeat;
+        }
+      }
+      &:nth-child(6) {
+        transform: translate(600px, 35px);
+        .images {
+          background-image: url("../assets/球02-蓝色拷贝4.png");
+          background-repeat: no-repeat;
+        }
+      }
+      &:nth-child(7) {
+        transform: translate(480px, 162px);
+        .images {
+          background-image: url("../assets/球03-橙色.png");
+          background-repeat: no-repeat;
+        }
+        .title-list,
+        .title-listTwo {
+          color: #f7caa3 !important;
+        }
+      }
+      &:nth-child(8) {
+        transform: translate(290px, 150px);
+        .images {
+          background-image: url("../assets/球03-橙色拷贝.png");
+          background-repeat: no-repeat;
+        }
+        .title-list,
+        .title-listTwo {
+          color: #f7caa3 !important;
+        }
+      }
+      &:nth-child(9) {
+        transition: all 2s;
+        transform:  translate(380px, 10px);
+        width: 200px;
+        height: 200px;
+transform-style: preserve-3d;
+z-index: 9992;
+        .images {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          background-image: url("../assets/球01.png");
+          background-repeat: no-repeat;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .pone {
+            width: 58px;
+            height: 18px;
+            font-family: DINPro-Bold;
+            font-size: 24px;
+            font-weight: normal;
+            font-stretch: normal;
+
+            letter-spacing: 0px;
+            color: hsl(16, 85%, 55%);
+          }
+          .ptwo {
+            width: 80px;
+            height: 15px;
+            font-family: PingFang-SC-Bold;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            line-height: 24px;
+            letter-spacing: 0px;
+            color: #8a2500;
+            margin-top: 13px;
+          }
+        }
+        .title-list {
+          height: 19px;
           font-family: PingFang-SC-Bold;
-          font-size: 16px;
+          font-size: 20px;
           font-weight: normal;
           font-stretch: normal;
           line-height: 24px;
           letter-spacing: 0px;
-          color: #8a2500;
-          margin-top: 13px;
+          color: #ffa460;
+        }
+        &:hover {
+          margin-top: 100px;
+          opacity: 0.8;
         }
       }
+
+      .images {
+        width: 70px;
+        height: 100%;
+        // border: solid 2px #21375a;
+        background-position: center center;
+      }
       .title-list {
-        height: 19px;
-        font-family: PingFang-SC-Bold;
+        font-family: DINPro-Bold;
         font-size: 20px;
         font-weight: normal;
         font-stretch: normal;
         line-height: 24px;
         letter-spacing: 0px;
-        color: #ffa460;
+        color: #bbe4ff;
+      }
+      .title-listTwo {
+        font-family: PingFang-SC-Bold;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #bbe4ff;
       }
     }
+  }
+  /*把2D空间转成3D空间*/
+  //
+  // transform: rotateX(-30deg) rotateY(0deg);
+  // animation: play 5s infinite linear;
+  .rotate {
+    width: 300px;
+    height: 300px;
+    transform: rotateX(50deg) rotateY(0deg);
+    background: url("../assets/底部.png") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    animation: play 3s  infinite linear  alternate;
+    left: 330px;
+    top: -20px;
 
-    .images {
-      width: 70px;
-      height: 100%;
-      // border: solid 2px #21375a;
-      background-position: center center;
-    }
-    .title-list {
-      font-family: DINPro-Bold;
-      font-size: 20px;
-      font-weight: normal;
-      font-stretch: normal;
-      line-height: 24px;
-      letter-spacing: 0px;
-      color: #bbe4ff;
-    }
-    .title-listTwo {
-      font-family: PingFang-SC-Bold;
-      font-size: 14px;
-      font-weight: normal;
-      font-stretch: normal;
-      line-height: 24px;
-      letter-spacing: 0px;
-      color: #bbe4ff;
-    }
+    //
+    // animation-play-state: paused;
+    //
   }
 }
 @keyframes play {
   from {
-    transform: rotateX(00deg) rotateY(0deg);
+    transform: rotateX(50deg) rotateY(-180deg);
   }
   to {
-    transform: rotateX(0deg) rotateY(180deg);
+    transform: rotateX(50deg) rotateY(80deg);
   }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <screen-adapter>
      <router-view> </router-view>
     </screen-adapter>
