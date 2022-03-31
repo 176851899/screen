@@ -1,5 +1,5 @@
 <template>
-  <div class=''>about</div>
+  <div class=''>a add.bout</div>
 </template>
 
 <script>
