@@ -364,12 +364,11 @@ export default {
         }
       }
       &:nth-child(9) {
-        transition: all 2s;
+        // transition: all 2s;
         transform:  translate(380px, 10px);
         width: 200px;
         height: 200px;
-transform-style: preserve-3d;
-z-index: 9992;
+          animation: float 3s  infinite linear  alternate;
         .images {
           width: 160px;
           height: 160px;
@@ -414,10 +413,10 @@ z-index: 9992;
           letter-spacing: 0px;
           color: #ffa460;
         }
-        &:hover {
-          margin-top: 100px;
-          opacity: 0.8;
-        }
+        // &:hover{
+        //   margin-top: 100px;
+        //   opacity: 0.8;
+        // }
       }
 
       .images {
@@ -474,4 +473,13 @@ z-index: 9992;
     transform: rotateX(50deg) rotateY(80deg);
   }
 }
+@keyframes float {
+  from {
+    transform: translate(380px, 10px) ;
+  }
+  to {
+     transform: translate(380px, 50px) ;
+  }
+}
+
 </style>
