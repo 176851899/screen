@@ -44,7 +44,7 @@ export default {
   margin-top: 15px;
   width: 420px;
   height: 550px;
-  background-color: #071018 !important;
+  background-color: #071018;
   border: solid 1px #2564ae;
   position: relative;
   overflow: hidden;
