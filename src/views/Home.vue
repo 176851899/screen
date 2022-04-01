@@ -206,10 +206,15 @@ export default {
       // immediate: true, // 组件实例创建时，立刻调用 handler 处理器
     }
   },
-  destroyed () {
-    clearInterval(this.trimer)
-    console.log(this.trimer, '销毁')
+  beforeDestroy(){
+     clearInterval(this.trimer)
+    per(this.$refs.per,true)
+    rader(this.$refs.rader,true)
+    bar(this.$refs.bar, this.arr, this.list,true)
+    axis(this.$refs.axis,true)
+    mix1(this.$refs.mix,true)
   }
+  
 }
 </script>
 

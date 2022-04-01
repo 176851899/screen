@@ -1,7 +1,7 @@
-import echarts, { dispose } from 'echarts'
-var dataArr = 4
-const per = element => {
+import echarts from 'echarts'
+const per = (element,dispose) => {
   var myChart = echarts.init(element)
+  console.log("my销毁")
   var seriesData = [{
     name: '失业保险',
     value: '机关养老',
@@ -221,10 +221,21 @@ const per = element => {
   }
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(option)
+  if(dispose){
+    myChart.dispose()
+    myChart =null
+    console.log("销毁9999")
+  }
 }
-const rader = element => {
+const rader = (element,dispose) => {
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(element)
+  if(dispose){
+    myChart.dispose()
+    myChart =null
+    console.log("销毁")
+    return
+  }
   var seriesData = [{
     name: '补缴最多险种',
     value: '机关养老',
@@ -473,14 +484,20 @@ const rader = element => {
 }
 
 /***
- *  
+ *   bar - 展示柱状图
  * @param {obj} element - 挂载的对象.
  * @param {arr} arr -数据数组
  * @param {arr} list -数据数组
+ *  @param {boolean} dispose -是否销毁
  * */
-const bar = (element, arr, list) => {
-  var myChart = echarts.init(element)
+const bar = (element, arr, list,dispose) => {
 
+  var myChart = echarts.init(element)
+    if(dispose){
+      myChart.dispose()
+      myChart =null
+      return
+    }
   // 同比数据
   var comparedData = [...list]
   // console.log('即时更新')
@@ -753,8 +770,15 @@ const bar = (element, arr, list) => {
   
   myChart=null
 }
-const axis = element => {
+const axis =  (element,dispose) => {
+  // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(element)
+  if(dispose){
+    myChart.dispose()
+    myChart =null
+    console.log("销毁")
+    return
+  }
   const colorList = ['#0689fd', '#40d2bd', '#d94156']
   const option = {
     title: {
@@ -1025,8 +1049,14 @@ const axis = element => {
 
   myChart.setOption(option)
 }
-const mix1 = element => {
+const mix1 =  (element,dispose) => {
+  // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(element)
+  if(dispose){
+    myChart.dispose()
+    myChart =null
+    return
+  }
   const data = [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188]
   const sideData = data.map((item) => item + 4.5)
   var data1 = [
