@@ -224,7 +224,7 @@ const per = (element,dispose) => {
   if(dispose){
     myChart.dispose()
     myChart =null
-    console.log("销毁9999")
+    console.log("销毁99995")
   }
 }
 const rader = (element,dispose) => {
