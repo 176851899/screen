@@ -1,11 +1,11 @@
 <template>
-  <div class="chart-item" :style="{width,height}">
+  <div class="chart-item" :style="{ width, height }">
     <div class="title">
-      <div class="desc">{{title}}</div>
-      <div class="option" v-if='show' >{{option}}</div>
+      <div class="desc">{{ title }}</div>
+      <div class="option" v-if="show">{{ option }}</div>
       <slot name="nav"></slot>
     </div>
-     <slot name="item"></slot>
+    <slot name="item"></slot>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     },
     height: {
       type: String,
-      default: ' 489px'
+      default: '489px'
     },
     show: {
       type: Boolean,
@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .chart-item {
   margin-top: 15px;
   width: 420px;
@@ -66,7 +66,6 @@ export default {
     background-blend-mode: normal, normal;
 
     .desc {
-
       height: 17px;
       font-family: PingFang-SC-Bold;
       font-size: 18px;
@@ -76,13 +75,13 @@ export default {
       letter-spacing: 0px;
       color: #fefefe;
       padding-left: 30px;
-       background: url("../assets/jiao.gif") no-repeat  10px center !important;
+      background: url("../assets/jiao.gif") no-repeat 10px center !important;
     }
     .option {
       width: 140px;
       height: 28px;
       font-size: 16px;
-      background: url("../assets/jiao2.png") no-repeat  right center ;
+      background: url("../assets/jiao2.png") no-repeat right center;
       background-color: #061524;
       border: solid 1px;
       color: #ffffff;

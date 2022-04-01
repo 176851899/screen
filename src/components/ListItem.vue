@@ -1,12 +1,18 @@
 <template>
   <div class="list-item">
-    <div class="images"  :style="{backgroundImage:`url(${url})`}"></div>
-  <!-- :style="{
+    <div class="images" :style="{ backgroundImage: `url(${url})` }"></div>
+    <!-- :style="{
         backgroundImage: 'url(' + filmInfo.poster + ')',
       }" -->
     <div class="content">
-      <p class="title">{{title}}</p>
-      <p><span class="desc">{{desc}}</span><span style="margin:0 15px">万元</span><i :style="{color:parseFloat(des)>0?'red':'#258770'}">{{des}}</i></p>
+      <p class="title">{{ title }}</p>
+      <p>
+        <span class="desc">{{ desc }}</span
+        ><span style="margin: 0 15px">万元</span
+        ><i :style="{ color: parseFloat(des) > 0 ? 'red' : '#258770' }">{{
+          des
+        }}</i>
+      </p>
     </div>
   </div>
 </template>
@@ -21,15 +27,14 @@ export default {
   },
   name: 'listitem',
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .list-item {
-  width: calc(100%/7);
+  width: calc(100% / 7);
   height: 71px;
   display: flex;
   position: relative;
@@ -47,12 +52,11 @@ export default {
     height: 100%;
     // border: solid 2px #21375a;
     background-position: center center;
-
   }
   .content {
     margin-left: 10px;
     p {
-      width:100%;
+      width: 100%;
       height: 14px;
       font-family: PingFang-SC-Medium;
       font-size: 14px;

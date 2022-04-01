@@ -1,6 +1,6 @@
 <template>
   <div class="ScreenAdapter" :style="style">
-   <slot></slot>
+    <slot></slot>
   </div>
 </template>
 <script>

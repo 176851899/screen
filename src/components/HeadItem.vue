@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="data data-two">
-      {{data}}
+      {{ data }}
     </div>
     <div class="title">
       {{ title }}
     </div>
-    <div class="data data-one">{{curDate}}</div>
- </header>
+    <div class="data data-one">{{ curDate }}</div>
+  </header>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 header {
   height: 62px;
   width: 100%;
@@ -71,7 +71,6 @@ header {
     letter-spacing: 0px;
     color: #ffffff;
     border: 1px solid #1851ab;
-
   }
   .data-one {
     letter-spacing: 0px;
@@ -79,11 +78,11 @@ header {
     border: none;
     margin-right: 40px;
   }
-  .data-two{
+  .data-two {
     margin-left: 30px;
     display: flex;
     align-items: center;
-     background: url("../assets/jiao2.png") no-repeat  right center ;
+    background: url("../assets/jiao2.png") no-repeat right center;
   }
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div>
-
     <screen-adapter>
-     <router-view> </router-view>
+      <router-view> </router-view>
     </screen-adapter>
   </div>
 </template>
@@ -12,7 +11,6 @@ export default {
   name: 'App',
   components: {
     ScreenAdapter
-
   },
   data () {
     return {}
@@ -20,11 +18,11 @@ export default {
 }
 </script>
 <style lang="scss">
-*{
+* {
   padding: 0;
   margin: 0;
 }
-i{
+i {
   font-weight: normal;
   font-style: normal;
 }
@@ -40,7 +38,7 @@ i{
   padding: 30px;
 
   a {
-     font-weight: bold;
+    font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
@@ -48,7 +46,8 @@ i{
     }
   }
 }
-ul,li{
+ul,
+li {
   list-style: none;
 }
 </style>

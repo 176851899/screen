@@ -213,7 +213,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -289,8 +289,8 @@ export default {
   position: relative;
   .disk {
     position: relative;
- width: 100%;
-  height: 450px;
+    width: 100%;
+    height: 450px;
     transform-style: preserve-3d;
 
     // animation: play 5s  linear;
@@ -365,10 +365,10 @@ export default {
       }
       &:nth-child(9) {
         // transition: all 2s;
-        transform:  translate(380px, 10px);
+        transform: translate(380px, 10px);
         width: 200px;
         height: 200px;
-          animation: float 3s  infinite linear  alternate;
+        animation: float 3s infinite linear alternate;
         .images {
           width: 160px;
           height: 160px;
@@ -456,7 +456,7 @@ export default {
     background: url("../assets/底部.png") no-repeat center center;
     background-size: cover;
     position: absolute;
-    animation: play 3s  infinite linear  alternate;
+    animation: play 3s infinite linear alternate;
     left: 330px;
     top: -20px;
 
@@ -475,11 +475,10 @@ export default {
 }
 @keyframes float {
   from {
-    transform: translate(380px, 10px) ;
+    transform: translate(380px, 10px);
   }
   to {
-     transform: translate(380px, 50px) ;
+    transform: translate(380px, 50px);
   }
 }
-
 </style>
