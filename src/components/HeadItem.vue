@@ -1,24 +1,17 @@
 <template>
   <header>
-    <div class="data data-two">
+    <div class="data data-left">
       {{ data }}
     </div>
     <div class="title">
       {{ title }}
     </div>
-    <div class="data data-one">{{ curDate }}</div>
+    <div class="data data-right">{{ curDate }}</div>
   </header>
 </template>
 
 <script>
 import dayjs from 'dayjs'
-var curDate = dayjs().format('YYYY-MM-DD HH:mm ')
-setInterval(() => {
-  curDate = dayjs().format('YYYY-MM-DD HH:mm ')
-  console.log(1)
-}, 15000)
-
-const data = curDate.slice(0, 8).split('-').join('')
 export default {
   props: {
     title: {
@@ -29,9 +22,13 @@ export default {
   name: 'headItem',
   data () {
     return {
-      curDate,
-      data
+      curDate:null,
+      data:null
     }
+  },
+  mounted(){
+    this.curDate=dayjs().format('YYYY-MM-DD HH:mm ')
+    this.data=this.curDate.slice(0, 8).split('-').join('')
   }
 }
 </script>
@@ -72,16 +69,18 @@ header {
     color: #ffffff;
     border: 1px solid #1851ab;
   }
-  .data-one {
+  .data-right {
     letter-spacing: 0px;
     color: #1b67de;
     border: none;
     margin-right: 40px;
   }
-  .data-two {
+  .data-left {
     margin-left: 30px;
     display: flex;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
     background: url("../assets/jiao2.png") no-repeat right center;
   }
 }

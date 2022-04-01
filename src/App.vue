@@ -1,9 +1,9 @@
 <template>
-  <div>
+<div>
     <screen-adapter>
       <router-view> </router-view>
     </screen-adapter>
-  </div>
+    </div>
 </template>
 <script>
 import ScreenAdapter from './components/screenAdapter.vue'
@@ -12,8 +12,10 @@ export default {
   components: {
     ScreenAdapter
   },
-  data () {
-    return {}
+  data(){
+    return {
+      
+    }
   }
 }
 </script>

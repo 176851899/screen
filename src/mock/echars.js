@@ -1,4 +1,4 @@
-import echarts from 'echarts'
+import echarts, { dispose } from 'echarts'
 var dataArr = 4
 const per = element => {
   var myChart = echarts.init(element)
@@ -473,19 +473,18 @@ const rader = element => {
 }
 
 /***
- * Book类，代表一个书本.
- * @constructor
- * @param {Object} element - 挂载的对象.
- * @param {Array} obj -数据数组
- * @param {Array} list -数据数组
+ *  
+ * @param {obj} element - 挂载的对象.
+ * @param {arr} arr -数据数组
+ * @param {arr} list -数据数组
  * */
-const bar = (element, obj, list) => {
+const bar = (element, arr, list) => {
   var myChart = echarts.init(element)
 
   // 同比数据
   var comparedData = [...list]
-  console.log('即时更新')
-  var data = [...obj]
+  // console.log('即时更新')
+  var data = [...arr]
   var sideData = data.map((item) => item - 20)
   const option = {
     title: {
@@ -751,6 +750,8 @@ const bar = (element, obj, list) => {
   }
 
   myChart.setOption(option)
+  
+  myChart=null
 }
 const axis = element => {
   var myChart = echarts.init(element)

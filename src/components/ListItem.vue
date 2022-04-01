@@ -1,9 +1,6 @@
 <template>
   <div class="list-item">
     <div class="images" :style="{ backgroundImage: `url(${url})` }"></div>
-    <!-- :style="{
-        backgroundImage: 'url(' + filmInfo.poster + ')',
-      }" -->
     <div class="content">
       <p class="title">{{ title }}</p>
       <p>
@@ -25,10 +22,8 @@ export default {
     desc: String,
     des: String
   },
-  name: 'listitem',
-  data () {
-    return {}
-  }
+  name: 'listitem'
+
 }
 </script>
 
@@ -38,6 +33,7 @@ export default {
   height: 71px;
   display: flex;
   position: relative;
+  margin: 15px 0px 15px 21px;
   opacity: 1;
   &::after {
     content: "";

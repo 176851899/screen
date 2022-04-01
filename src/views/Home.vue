@@ -11,7 +11,7 @@
         :des="item.des"
       ></list-item>
     </nav>
-    <main>
+    <main >
       <chart-item width="420px" style="margin-right: 15px">
         <template #item>
           <div class="per" style="width: 390px; height: 400px" ref="per"></div>
@@ -21,7 +21,7 @@
         title="各险种缴费明细"
         width="960px"
         style="margin-right: 15px"
-        :show="false"
+       
       >
         <template #nav>
           <ul class="list">
@@ -112,7 +112,7 @@
   </div>
 </template>
 <script>
-import { per, rader, bar, axis, mix1 } from '../utils/echars'
+import { per, rader, bar, axis, mix1 } from '../mock/echars'
 import img70 from '../assets/01_70.png'
 import img1 from '../assets/01_7.png'
 import img75 from '../assets/01_75.png'
@@ -172,7 +172,7 @@ export default {
         }
       ],
       arr: [220, 182, 191, 234, 290, 330, 310, 400, 500, 300, 200, 188],
-      id: null,
+     trimer: null,
       list: [70, 40, 80, 70, 50, 50, 60, 70, 20, 70, 30, 40]
     }
   },
@@ -187,11 +187,11 @@ export default {
     bar(this.$refs.bar, this.arr, this.list)
     axis(this.$refs.axis)
     mix1(this.$refs.mix)
-    console.log(img1)
-    this.id = setInterval(() => {
+
+    this. trimer = setInterval(() => {
       this.arr = this.arr.map((item) => item + 1)
       this.list = this.list.map((item) => item - 1)
-      console.log('time')
+      // console.log('time')
     }, 1000)
   },
   watch: {
@@ -200,15 +200,15 @@ export default {
       // 处理器
       handler (newVal) {
         // console.log(newVal, '55', this.list)
-        console.log('监控成功')
+        // console.log('监控成功')
         bar(this.$refs.bar, newVal, this.list)
       }
       // immediate: true, // 组件实例创建时，立刻调用 handler 处理器
     }
   },
   destroyed () {
-    clearInterval(this.id)
-    console.log(this.id, '销毁')
+    clearInterval(this.trimer)
+    console.log(this.trimer, '销毁')
   }
 }
 </script>
@@ -286,6 +286,8 @@ export default {
   width: 100%;
   height: 450px;
   background: url("../assets/底部001.png") no-repeat center center;
+  
+   animation:disk 3s infinite linear alternate;
   position: relative;
   .disk {
     position: relative;
@@ -452,13 +454,14 @@ export default {
   .rotate {
     width: 300px;
     height: 300px;
-    transform: rotateX(50deg) rotateY(0deg);
+    transform: rotateX(50deg) rotateZ(-180deg);
     background: url("../assets/底部.png") no-repeat center center;
     background-size: cover;
     position: absolute;
+   top: 10px;
     animation: play 3s infinite linear alternate;
     left: 330px;
-    top: -20px;
+  
 
     //
     // animation-play-state: paused;
@@ -467,10 +470,10 @@ export default {
 }
 @keyframes play {
   from {
-    transform: rotateX(50deg) rotateY(-180deg);
+    transform: rotateX(50deg) rotateZ(-180deg);
   }
   to {
-    transform: rotateX(50deg) rotateY(80deg);
+    transform: rotateX(50deg) rotateZ(180deg);
   }
 }
 @keyframes float {
@@ -479,6 +482,14 @@ export default {
   }
   to {
     transform: translate(380px, 50px);
+  }
+}
+@keyframes disk {
+   from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(45deg);
   }
 }
 </style>

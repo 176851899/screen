@@ -2,8 +2,10 @@
   <div class="chart-item" :style="{ width, height }">
     <div class="title">
       <div class="desc">{{ title }}</div>
-      <div class="option" v-if="show">{{ option }}</div>
-      <slot name="nav"></slot>
+     
+      <slot name="nav">
+         <div class="option" >{{ option }}</div>
+      </slot>
     </div>
     <slot name="item"></slot>
   </div>
@@ -20,10 +22,6 @@ export default {
       type: String,
       default: '489px'
     },
-    show: {
-      type: Boolean,
-      default: true
-    },
     title: {
       type: String,
       default: '各险种缴费发布'
@@ -32,9 +30,6 @@ export default {
       type: String,
       default: '征缴总金额'
     }
-  },
-  data () {
-    return {}
   }
 }
 </script>
@@ -55,11 +50,13 @@ export default {
     position: absolute;
     left: 0;
     background-color: #2383ed;
+    
   }
   .title {
     width: 100%;
     height: 40px;
     display: flex;
+    margin-left: 2px;
     justify-content: space-between;
     align-items: center;
     background-image: linear-gradient(-90deg, #072854 0%, #102a45 100%);
