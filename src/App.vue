@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!-- 智慧 -->
     <screen-adapter>
       <router-view> </router-view>
     </screen-adapter>
